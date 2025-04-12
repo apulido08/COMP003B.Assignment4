@@ -23,6 +23,23 @@ namespace COMP003B.Assignment4.Controllers
             var videoGame = new VideoGame { Id = id, Title = $"Game {id}", Genre = "Unknown", Description = "Detailed description coming soon.", ReleaseDate = DateTime.Now };
             return View(videoGame);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(VideoGame game)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index"); 
+            }
+
+            return View(game);
+        }
     }
 
 }
